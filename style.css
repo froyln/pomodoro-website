@@ -47,7 +47,7 @@ a {
     transition: 1.5s;
 }
 #text-froy-epic-website:hover {
-    color: purple;
+    color: rgb(230, 0, 230);
 }
 
 #contador_layout {
@@ -164,6 +164,6 @@ a {
 }
 
 #creditos:hover {
-    color: purple;
+    color: rgb(230, 0, 230);
     transition: 1.5s;
 }

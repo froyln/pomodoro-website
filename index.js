@@ -3,13 +3,13 @@ const timer_screen = document.getElementById("contador");
 const audio = new Audio('sources/button_sound.wav');
 const modo = document.getElementById("modo");
 const icono = document.getElementById("imagen_barra_de_paginas");
-const notificacion_boton = document.getElementById("");
+const notificacion_boton = document.getElementById("boton-de-notificaciones");
 const button_siguiente = document.getElementById("button_siguiente"); 
 
 audio.volume = 0.2;
 
 var operacion = "pomodoro";
-var pausa_button;
+var segundos_pausa = 0;
 var estado;
 
 let start_button = document.getElementById("start_button");
@@ -20,29 +20,33 @@ function toggle() {
     audio.play();
     start_button.classList.toggle('break');
     if(start_button.classList.contains('break')){
-        start_button.innerText = "BORRAR";
+        start_button.innerText = "PAUSAR";
         estado = "INICIAR";
         pomodoro();
     }
     else{
         audio.play();
         start_button.innerText = "INICIAR";
-        estado = "BORRAR";
-        pomodoro_colors_change_black()
-        modo.innerText = "Pomodoro";
-        operacion = "pomodoro";
-        timer_screen.innerText = segundosAMinutos(1500);
+        estado = "PAUSA";
+        setTimeout(function(){
+            if (segundos_pausa != 0){
+                timer_screen.innerText = segundosAMinutos(segundos_pausa);
+            }
+        }, 1000);
     }
 }
 
 function pomodoro() {
-    if (operacion == "pomodoro"){
+    if (segundos_pausa != 0){
+        pomodoro_timer(segundos_pausa);
+        segundos_pausa = 0;
+    }
+    else if (operacion == "pomodoro"){
         modo.innerText = "Pomodoro";
         pomodoro_timer(1500);
         pomodoro_colors_change_red();
     }
-    
-    if (operacion == "break"){
+    else if (operacion == "break"){
         modo.innerText = "Descanso";
         timer_screen.innerText = segundosAMinutos(300);
         pomodoro_timer(300);
@@ -54,6 +58,12 @@ function pomodoro_timer(segundos) {
     var segundos_temp = segundos;
 
     const timer = setInterval(() => {
+        if (estado == "PAUSA"){
+            clearInterval(timer);   
+            segundos_pausa = segundos_temp;
+            return;
+        }   
+
         if (estado == "BORRAR"){
             clearInterval(timer);   
             if (operacion == "pomodoro"){
@@ -66,6 +76,7 @@ function pomodoro_timer(segundos) {
         }   
 
         segundos_temp = segundos_temp - 1;
+
         timer_screen.innerText = segundosAMinutos(segundos_temp);
         if (segundos_temp == 0){
             clearInterval(timer);
@@ -110,24 +121,44 @@ function segundosAMinutos(segundos) {
 
 button_siguiente.addEventListener('click', function toggleSiguiente(){
     if (operacion == "pomodoro"){
+        if (estado == "INICIAR"){
+            toggle();
+        }
         operacion = "break";
         estado = "BORRAR";
+        modo.innerText = "Descanso";
         timer_screen.innerText = segundosAMinutos(300);
+        pomodoro_colors_change_green();
+        audio.play();
     }
     else if (operacion == "break"){
+        if (estado == "INICIAR"){
+            toggle();
+        }
         operacion = "pomodoro"
         estado = "BORRAR";
+        modo.innerText = "Pomodoro";
         timer_screen.innerText = segundosAMinutos(1500);
+        pomodoro_colors_change_red();
+        audio.play();
     }
     pomodoro()
 });
 
+notificacion_boton.addEventListener('click', () => {
+  // ‑‑ Si ya está concedido, lanza la notificación y listo
+  if (Notification.permission === 'granted') {
+    return;
+  }
 
-
-Notification.requestPermission().then(function(permission) {
-    if (permission === 'granted') {
-        // El usuario ha permitido las notificaciones
-    } else {
-        // El usuario ha negado o está pendiente el permiso
-    }
+  // ‑‑ Si aún no decidió, pídele permiso una sola vez
+  if (Notification.permission === 'default') {
+    Notification.requestPermission().then((permiso) => {
+      if (permiso === 'granted') {
+      }
+    });
+  }
+  // si es "denied", no hacemos nada
 });
+
+
