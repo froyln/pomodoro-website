@@ -1,0 +1,108 @@
+* {
+    color:aliceblue;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(10, 10, 10);
+}
+
+.body_pomodoro {
+    background-color: rgb(10, 10, 10);
+    transition: 1s;
+}
+
+.body_pomodoro_red {
+    background-color: rgb(78, 0, 0);
+    transition: 1s;
+}
+
+.body_pomodoro_verde {
+    background-color: rgb(58, 152, 88);
+    transition: 1s;
+}
+ 
+a {
+    text-decoration: none;
+}
+ 
+.froyImg {
+    margin: 0%;
+    margin-top: 25px;
+    width: 50%;
+}   
+
+.titulo {
+    margin-top: 25px;
+    font-size: 50px;
+    font-weight: bold;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0%;  
+}
+
+#text-froy-epic-website {
+    transition: 1.5s;
+}
+#text-froy-epic-website:hover {
+    color: purple;
+}
+
+#contador_layout {
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    border-color: rgb(30, 30, 30);
+    border-width: 8px;
+    border-radius: 15px;
+    background-color: rgba(56, 56, 56, 0.741);
+    margin-top: 30px;
+    margin-bottom: 2px;
+    font-size: 45px;
+    text-align: center;
+    min-width: 550px;
+    max-width: 100px; 
+}
+
+#modo {
+    /* display: inline-flex; */
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(56, 56, 56, 0.741);
+    margin-top: 50px;
+    margin-bottom: 2px;
+    font-size: 45px;
+    text-align: center;
+    min-width: 250px;
+    max-width: 100px; 
+}
+
+#contador {
+    display: inline-flex;
+    padding-right: 55px;
+    padding-left: 55px;
+    min-width: auto;
+    background-color: rgba(56, 56, 56, 0.741);
+    margin-top: 0px;
+    font-size: 150px;
+    text-align: center;
+    margin-bottom: 0%;
+}
+
+#start_button {
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 15px;
+    display: inline-flex;
+    border-width: 5px;
+    border-color: black;
+    margin-bottom: 50px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(56, 56, 56, 0.741);
+    font-size: 40px;
+    padding-left: 50px;
+    padding-right: 50px;
+    /* min-width: 150px; */
+}
