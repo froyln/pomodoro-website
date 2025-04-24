@@ -27,10 +27,8 @@ a {
     text-decoration: none;
 }
  
-.froyImg {
-    margin: 0%;
-    margin-top: 25px;
-    width: 50%;
+#froyImg {
+    width: 150px;
 }   
 
 .titulo {
@@ -166,4 +164,130 @@ a {
 #creditos:hover {
     color: rgb(230, 0, 230);
     transition: 1.5s;
+}
+
+@media screen and (max-width: 1000px) {
+    #froyImg {
+        display: block;
+        width: 0px;
+        opacity: 0;
+        margin-bottom: 55px;
+    }   
+
+    #text-froy-epic-website {
+        font-size: 0px;
+        opacity: 0;
+    }
+
+    #text-froy-epic-website:hover {
+        color: rgb(230, 0, 230);
+    }
+
+    #contador_layout {
+        margin-left: auto;
+        margin-right: auto;
+        border-style: solid;
+        border-color: rgb(30, 30, 30);
+        border-width: 8px;
+        border-radius: 15px;
+        background-color: rgba(56, 56, 56, 0.741);
+        margin-top: 10px;
+        margin-bottom: 2px;
+        font-size: 45px;
+        text-align: center;
+        min-width: 350px;
+        max-width: 100px; 
+    }
+    
+    #boton-de-notificaciones {
+        display: inline-flex;
+        background-color:transparent;
+        border-color: transparent;
+        margin: 0;
+        margin-right: 180px;
+        font-size: 40px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    
+    #boton-de-notificaciones:hover {
+        transition: 0.5s;
+        font-size: 45px;
+        font-style: bold;
+    }
+    
+    #boton-de-recargar {
+        display: inline-flex;
+        background-color:transparent;
+        border-color: transparent;
+        margin: 0;
+        margin-left: 0px;
+        font-size: 43px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+    
+    
+    #boton-de-recargar:hover {
+        transition: 0.5s;
+        font-size: 48px;
+        font-style: bold;
+    }
+    
+    #modo {
+        /* display: inline-flex; */
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(56, 56, 56, 0.741);
+        margin-top: 0px;
+        margin-bottom: 2px;
+        font-size: 45px;
+        text-align: center;
+        min-width: 250px;
+        max-width: 100px; 
+    }
+    
+    #contador {
+        display: inline-flex;
+        padding-right: 55px;
+        padding-left: 55px;
+        min-width: auto;
+        background-color: rgba(56, 56, 56, 0.741);
+        font-size: 80px;
+        text-align: center;
+        margin-top: 7%;
+        margin-bottom: 7%;
+    }
+    
+    #start_button {
+        cursor: pointer;
+        margin-top: 15px;
+        border-radius: 15px;
+        display: inline-flex;
+        border-width: 5px;
+        border-color: black;
+        margin-bottom: 50px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(56, 56, 56, 0.741);
+        font-size: 40px;
+        padding-left: 50px;
+        padding-right: 50px;
+        /* min-width: 150px; */
+    }
+    
+    #button_siguiente {
+        cursor: pointer;
+        margin-top: 15px;
+        border-radius: 15px;
+        display: inline-flex;
+        border-width: 5px;
+        border-color: black;
+        margin-bottom: 50px;
+        color: rgb(255, 255, 255);
+        background-color: rgb(56, 56, 56, 0.741);
+        font-size: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
+        /* min-width: 150px; */
+    }
 }

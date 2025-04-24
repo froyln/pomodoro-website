@@ -11,12 +11,20 @@ audio.volume = 0.2;
 var operacion = "pomodoro";
 var segundos_pausa = 0;
 var estado;
+var boton_presionado_no_spam = false;
 
 let start_button = document.getElementById("start_button");
 
 start_button.addEventListener('click', toggle);
 
 function toggle() {
+    if (boton_presionado_no_spam == true){
+        return;
+    }
+    boton_presionado_no_spam = true;
+    setTimeout(function() {
+        boton_presionado_no_spam = false;
+    }, 1000);
     audio.play();
     start_button.classList.toggle('break');
     if(start_button.classList.contains('break')){
@@ -83,12 +91,13 @@ function pomodoro_timer(segundos) {
 
             if (operacion == "pomodoro"){
                 operacion = "break";
+                new_notificacion_send("Tu Descanso ha comenzado.", "Tu tiempo de trabajo termino, ha iniciado tu periodo de descanso, Felicidades!!. 😁😁😁");
                 pomodoro();
             }
             else if (operacion == "break"){
                 operacion = "pomodoro";
-                start_button.innerText = "Reiniciar";
-                start_button.classList.toggle('break');
+                new_notificacion_send("Tu Descanso ha terminado.", "Tu tiempo de descanso termino, es hora de iniciar a trabajar. 🤓🤠😡");
+                pomodoro();
             }
         }  
     }, 1000);
@@ -146,19 +155,34 @@ button_siguiente.addEventListener('click', function toggleSiguiente(){
 });
 
 notificacion_boton.addEventListener('click', () => {
-  // ‑‑ Si ya está concedido, lanza la notificación y listo
   if (Notification.permission === 'granted') {
     return;
   }
 
-  // ‑‑ Si aún no decidió, pídele permiso una sola vez
   if (Notification.permission === 'default') {
     Notification.requestPermission().then((permiso) => {
       if (permiso === 'granted') {
       }
     });
   }
-  // si es "denied", no hacemos nada
 });
+
+function new_notificacion_send(titulo, mensaje){
+    if (Notification.permission === 'granted') {
+        var notification = new Notification(titulo, {
+            body: mensaje,
+            icon: 'sources/totoro_icon.ico' 
+        });
+    
+        notification.onclick = function() {
+            console.log('El usuario hizo clic en la notificación.');
+        };
+    
+        notification.onclose = function() {
+            console.log('La notificación se ha cerrado.');
+        };
+    }
+}
+
 
 
