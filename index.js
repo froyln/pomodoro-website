@@ -3,6 +3,8 @@ const timer_screen = document.getElementById("contador");
 const audio = new Audio('sources/button_sound.wav');
 const modo = document.getElementById("modo");
 const icono = document.getElementById("imagen_barra_de_paginas");
+const notificacion_boton = document.getElementById("");
+const button_siguiente = document.getElementById("button_siguiente"); 
 
 audio.volume = 0.2;
 
@@ -29,7 +31,7 @@ function toggle() {
         pomodoro_colors_change_black()
         modo.innerText = "Pomodoro";
         operacion = "pomodoro";
-        timer_screen.innerText = "1500";
+        timer_screen.innerText = segundosAMinutos(1500);
     }
 }
 
@@ -42,7 +44,7 @@ function pomodoro() {
     
     if (operacion == "break"){
         modo.innerText = "Descanso";
-        timer_screen.innerText = "300";
+        timer_screen.innerText = segundosAMinutos(300);
         pomodoro_timer(300);
         pomodoro_colors_change_green();
     }
@@ -54,12 +56,17 @@ function pomodoro_timer(segundos) {
     const timer = setInterval(() => {
         if (estado == "BORRAR"){
             clearInterval(timer);   
-            timer_screen.innerText = 1500;
+            if (operacion == "pomodoro"){
+                timer_screen.innerText = segundosAMinutos(1500);
+            }
+            else if (operacion == "break"){
+                timer_screen.innerText = segundosAMinutos(300);
+            }
             return;
         }   
 
         segundos_temp = segundos_temp - 1;
-        timer_screen.innerText = segundos_temp;
+        timer_screen.innerText = segundosAMinutos(segundos_temp);
         if (segundos_temp == 0){
             clearInterval(timer);
 
@@ -91,3 +98,36 @@ function pomodoro_colors_change_green() {
     icono.href = 'sources/totoro_icon_verde.ico';
 }
 
+function segundosAMinutos(segundos) {
+    const minutos = Math.floor(segundos / 60);
+    var segundosRestantes = segundos % 60;
+    if (segundosRestantes < 10){
+        segundosRestantes = "0" + segundosRestantes;
+    }
+    var minutosYsegundos = minutos + ":" + segundosRestantes;
+    return minutosYsegundos;
+}
+
+button_siguiente.addEventListener('click', function toggleSiguiente(){
+    if (operacion == "pomodoro"){
+        operacion = "break";
+        estado = "BORRAR";
+        timer_screen.innerText = segundosAMinutos(300);
+    }
+    else if (operacion == "break"){
+        operacion = "pomodoro"
+        estado = "BORRAR";
+        timer_screen.innerText = segundosAMinutos(1500);
+    }
+    pomodoro()
+});
+
+
+
+Notification.requestPermission().then(function(permission) {
+    if (permission === 'granted') {
+        // El usuario ha permitido las notificaciones
+    } else {
+        // El usuario ha negado o está pendiente el permiso
+    }
+});

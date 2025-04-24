@@ -10,17 +10,17 @@ body {
 
 .body_pomodoro {
     background-color: rgb(10, 10, 10);
-    transition: 1s;
+    transition: 1.5s;
 }
 
 .body_pomodoro_red {
     background-color: rgb(78, 0, 0);
-    transition: 1s;
+    transition: 1.5s;
 }
 
 .body_pomodoro_verde {
     background-color: rgb(58, 152, 88);
-    transition: 1s;
+    transition: 1.5s;
 }
  
 a {
@@ -35,7 +35,7 @@ a {
 
 .titulo {
     margin-top: 25px;
-    font-size: 50px;
+    font-size: 100px;
     font-weight: bold;
     display: inline-flex;
     justify-content: center;
@@ -66,12 +66,47 @@ a {
     max-width: 100px; 
 }
 
+#boton-de-notificaciones {
+    display: inline-flex;
+    background-color:transparent;
+    border-color: transparent;
+    margin: 0;
+    margin-right: 370px;
+    font-size: 40px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#boton-de-notificaciones:hover {
+    transition: 0.5s;
+    font-size: 45px;
+    font-style: bold;
+}
+
+#boton-de-recargar {
+    display: inline-flex;
+    background-color:transparent;
+    border-color: transparent;
+    margin: 0;
+    margin-left: 0px;
+    font-size: 43px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+#boton-de-recargar:hover {
+    transition: 0.5s;
+    font-size: 48px;
+    font-style: bold;
+}
+
 #modo {
     /* display: inline-flex; */
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(56, 56, 56, 0.741);
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 2px;
     font-size: 45px;
     text-align: center;
@@ -105,4 +140,30 @@ a {
     padding-left: 50px;
     padding-right: 50px;
     /* min-width: 150px; */
+}
+
+#button_siguiente {
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 15px;
+    display: inline-flex;
+    border-width: 5px;
+    border-color: black;
+    margin-bottom: 50px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(56, 56, 56, 0.741);
+    font-size: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* min-width: 150px; */
+}
+
+#creditos {
+    color: rgb(255, 255, 255);
+    transition: 1.5s;
+}
+
+#creditos:hover {
+    color: purple;
+    transition: 1.5s;
 }
